@@ -59,10 +59,10 @@ namespace SpaceInvaders
             Console.Clear();
 
             string playerName = "";
-            string intro1 = "CAPTAIN: This is Captain Holt. I am the Commander of the Fleet.";
+            string intro1 = "CAPTAIN: Greetings, Fighter Pilot. This is Captain Holt. I am the Commander of the Fleet.";
             string intro2 = "CAPTAIN: What's your name?";
             string intro4 = "CAPTAIN: I have a new assignment for you. ";
-            string intro5 = "CAPTAIN: We have detected a new fleet of Atrox Invaders moving towards Earth.";
+            string intro5 = "CAPTAIN: We have detected a new fleet of Atrox invaders approaching towards Earth.";
             string intro6 = "CAPTAIN: Your job is to defend our home planet and kill the invaders.";
 
             Console.SetCursorPosition(5, 8);
@@ -80,7 +80,7 @@ namespace SpaceInvaders
             }
             Console.SetCursorPosition(5, 11);
             playerName = Console.ReadLine();
-            string intro3 = "CAPTAIN: Welcome to our Battle Fortress, " + playerName + "!";
+            string intro3 = "CAPTAIN: Welcome to our Battle Fortress, " + playerName + "!" + " Thank you for joining us.";
 
             Console.SetCursorPosition(5, 13);
             for (int i = 0; i < intro3.Length; i++)

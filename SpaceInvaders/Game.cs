@@ -9,7 +9,7 @@ namespace SpaceInvaders
         static int FrameCount = 0;
         static void Main(string[] args)
         {
-            //RenderWelcomeScreen();
+            RenderWelcomeScreen();
             var gameState = new GameState();
 
             while (true)
@@ -23,11 +23,17 @@ namespace SpaceInvaders
                     RenderGameOverScreen(state);
                     var key = Console.ReadKey(true).Key;
 
+                    while (true)
+                    {
+                        if (key == ConsoleKey.Q || key == ConsoleKey.Enter)
+                            break;
+                    }
+
                     if (key == ConsoleKey.Q)
                     {
                         break;
                     }
-                    else
+                    else if(key == ConsoleKey.Enter)
                     {
                         state.EscapedInvaderCount = 0;
                         state.GameScore = 0;
@@ -98,8 +104,9 @@ namespace SpaceInvaders
             Console.Write("Game Over");
             Console.SetCursorPosition(28, 20);
             Console.Write(String.Format("Your Score: {0}", state.GameScore));
+            Thread.Sleep(3000);
             Console.SetCursorPosition(15, 32);
-            Console.Write("Press any key to play again. Press Q to quit the game.");
+            Console.Write("Press Enter key to play again. Press Q to quit the game.");
         }
 
         static void RenderWelcomeScreen()
