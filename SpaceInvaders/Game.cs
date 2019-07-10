@@ -27,6 +27,8 @@ namespace SpaceInvaders
                     {
                         if (key == ConsoleKey.Q || key == ConsoleKey.Enter)
                             break;
+                        else
+                            key = Console.ReadKey(true).Key;
                     }
 
                     if (key == ConsoleKey.Q)
@@ -37,7 +39,7 @@ namespace SpaceInvaders
                     {
                         state.EscapedInvaderCount = 0;
                         state.GameScore = 0;
-                        state.Hero = new Hero(40, 32);
+                        state.Hero = new Hero(38, 30);
                         state.Invaders = new List<Invader>();
                         state.Bullets = new List<Bullet>();
                     }
@@ -104,7 +106,7 @@ namespace SpaceInvaders
             Console.Write("Game Over");
             Console.SetCursorPosition(28, 20);
             Console.Write(String.Format("Your Score: {0}", state.GameScore));
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             Console.SetCursorPosition(15, 32);
             Console.Write("Press Enter key to play again. Press Q to quit the game.");
         }

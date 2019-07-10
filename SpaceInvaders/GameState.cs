@@ -14,7 +14,7 @@ namespace SpaceInvaders
 
         public GameState()
         {
-            Hero = new Hero(20, 20);
+            Hero = new Hero(38, 30);
             Bullets = new List<Bullet>();
             Invaders = new List<Invader>()
             {
