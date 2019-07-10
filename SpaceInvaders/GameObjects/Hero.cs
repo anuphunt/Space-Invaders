@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpaceInvadersV2
+namespace SpaceInvaders
 {
     public class Hero: GameObjects
     {

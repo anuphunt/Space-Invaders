@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SpaceInvadersV2
+namespace SpaceInvaders
 {
     public class GameBoard
     {
@@ -10,12 +10,15 @@ namespace SpaceInvadersV2
         {
             Console.SetWindowSize(width, height);
         }
+
         public void ClearScreen()
         {
             Console.Clear();
         }
+
         public void RenderHero(Hero hero)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             if(hero.PositionX < 0)
             {
                 hero.PositionX = 0;
@@ -34,10 +37,12 @@ namespace SpaceInvadersV2
             }
             Console.SetCursorPosition(hero.PositionX, hero.PositionY);
             Console.Write(hero.Symbol);
+            Console.ResetColor();
         }
 
         public void RenderInvaders(List<Invader> invaders)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             if (invaders != null)
             {
                 foreach (var invader in invaders)
@@ -53,6 +58,7 @@ namespace SpaceInvadersV2
                     }
                 }
             }
+            Console.ResetColor();
         }
 
         public void RenderBullets(List<Bullet> bullets)
@@ -103,6 +109,7 @@ namespace SpaceInvadersV2
             Console.SetCursorPosition(50, 32);
             Console.Write(String.Format("Escaped Invaders: {0}", escapedInvadersCount));
         }
+
         public void HideCursor()
         {
             Console.CursorVisible = false;
