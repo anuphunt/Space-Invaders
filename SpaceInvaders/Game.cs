@@ -93,5 +93,16 @@ namespace SpaceInvadersV2
             }
             return naptime > 0 ? naptime : 0;
         }
+        static void RenderGameOverScreen(GameState state)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(30, 14);
+            Console.Write("Game Over");
+
+            Console.SetCursorPosition(28, 20);
+            Console.Write(String.Format("Your Score: {0}", state.GameScore));
+            Console.SetCursorPosition(15, 32);
+            Console.Write("Press any key to play again. Press Q to quit the game.");
+        }
     }
 }
