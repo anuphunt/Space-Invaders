@@ -17,6 +17,21 @@ namespace SpaceInvadersV2
 
                 // handles the updated gamestate
                 var state = HandleFrame(gameState);
+                if (state.CheckGameOver())
+                {
+                    RenderGameOverScreen(state);
+                    var key = Console.ReadKey(true).Key;
+                    if(key == ConsoleKey.Q)
+                    {
+                        break;
+                    }
+
+                    state.EscapedInvaderCount = 0;
+                    state.GameScore = 0;
+                    state.Hero = new Hero(40, 32);
+                    state.Invaders = new List<Invader>();
+                    state.Bullets = new List<Bullet>(); 
+                }
 
                 //Draws State to console
                 Render(state);
@@ -35,37 +50,35 @@ namespace SpaceInvadersV2
             state.GetKeyStrokes();
             state.UpdateBulletLocation();
 
-            if (FrameCount%4 == 0)
+            if (FrameCount%10 == 0)
             {
                 state.UpdateInvaderLocation();
             }
-            if(FrameCount%50 == 0)
+            if(FrameCount%60 == 0)
             {
                 state.GenerateInvader();
             }
-
-            var newState = new GameState();
-            newState.Bullets = state.Bullets;
-            newState.Invaders = state.Invaders;
-            newState.EscapedInvaderCount = state.EscapedInvaderCount;
-            newState.Hero = state.Hero;
-            newState.GameScore = state.GameScore;
-
-            return newState;
+           return state;
         }
 
         static void Render(GameState state)
         {
             var board = new GameBoard();
-
-            board.SetBoardSize(40, 35);
-
-            board.ClearScreen();
-            board.RenderHero(state.Hero);
-            board.RenderInvaders(state.Invaders);
-            board.RenderBullets(state.Bullets);
-            board.DisplayGameScore(state.GameScore);
-             board.HideCursor();
+            //if(state.GameOver)
+            //{
+            //    board.GameOver();
+            //}
+            //else
+            //{
+                board.SetBoardSize(80, 35);
+                board.ClearScreen();
+                board.RenderHero(state.Hero);
+                board.RenderInvaders(state.Invaders);
+                board.RenderBullets(state.Bullets);
+                board.DisplayGameScore(state.GameScore);
+                board.DisplayEscapedInvaderCount(state.EscapedInvaderCount);
+                board.HideCursor();
+            //}
         }
 
         //time for the thread to sleep to maintain the game speed. 
@@ -74,9 +87,9 @@ namespace SpaceInvadersV2
             var finalTimeStamp = DateTime.Now;
             var timeDifference = (finalTimeStamp - initialTime).TotalMilliseconds;
             int naptime = 0;
-            if (timeDifference < 160)
+            if (timeDifference < 33.3)
             {
-                naptime = (int)(100 - timeDifference);
+                naptime = (int)(33.3 - timeDifference);
             }
             return naptime > 0 ? naptime : 0;
         }

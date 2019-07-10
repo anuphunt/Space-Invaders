@@ -16,6 +16,22 @@ namespace SpaceInvadersV2
         }
         public void RenderHero(Hero hero)
         {
+            if(hero.PositionX < 0)
+            {
+                hero.PositionX = 0;
+            }
+            else if(hero.PositionX > 80)
+            {
+                hero.PositionX = 80;
+            }
+            else if(hero.PositionY < 0)
+            {
+                hero.PositionY = 0;
+            }
+            else if(hero.PositionY > 30)
+            {
+                hero.PositionY = 30;
+            }
             Console.SetCursorPosition(hero.PositionX, hero.PositionY);
             Console.Write(hero.Symbol);
         }
@@ -80,6 +96,12 @@ namespace SpaceInvadersV2
         {
             Console.SetCursorPosition(5, 32);
             Console.Write(String.Format("Game Score: {0}",gameScore));
+        }
+
+        public void DisplayEscapedInvaderCount(int escapedInvadersCount)
+        {
+            Console.SetCursorPosition(50, 32);
+            Console.Write(String.Format("Escaped Invaders: {0}", escapedInvadersCount));
         }
         public void HideCursor()
         {

@@ -27,23 +27,22 @@ namespace SpaceInvadersV2
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
-                Console.ReadKey(false);
                 switch (key.Key)
                 {
                     case ConsoleKey.W:
-                        UpdateHeroPosition('W');
+                        Hero.PositionY -= 1;
                         break;
 
                     case ConsoleKey.A:
-                        UpdateHeroPosition('A');
+                        Hero.PositionX -= 1;
                         break;
 
                     case ConsoleKey.S:
-                        UpdateHeroPosition('S');
+                        Hero.PositionY += 1;
                         break;
 
                     case ConsoleKey.D:
-                        UpdateHeroPosition('D');
+                        Hero.PositionX += 1;
                         break;
 
                     case ConsoleKey.Spacebar:
@@ -56,7 +55,7 @@ namespace SpaceInvadersV2
         public void GenerateInvader()
         {
             Random random = new Random();
-            int x = random.Next(0, 40);
+            int x = random.Next(10, 70);
             var invader = new Invader(x, 0);
             Invaders.Add(invader);
         }
@@ -111,42 +110,22 @@ namespace SpaceInvadersV2
                         invader.PositionY += 1;
                         activeInvaders.Add(invader);
                     }
+                    else if (invader.PositionY == 30)
+                    {
+                        EscapedInvaderCount++;
+                    }
                 }
             }
             Invaders = activeInvaders;
         }
-        private void UpdateHeroPosition(char c)
+
+        public bool CheckGameOver()
         {
-            switch (c)
-            {
-                case 'W':
-                    if (Hero.PositionY != 0)
-                    {
-                        Hero.PositionY -= 1;
-                    }
-                    break;
-
-                case 'A':
-                    if (Hero.PositionX != 0)
-                    {
-                        Hero.PositionX -= 1;
-                    }
-                    break;
-
-                case 'S':
-                    if (Hero.PositionY != 30)
-                    {
-                        Hero.PositionY += 1;
-                    }
-                    break;
-
-                case 'D':
-                    if (Hero.PositionX != 80)
-                    {
-                        Hero.PositionX += 1;
-                    }
-                    break;
-            }
+            if (EscapedInvaderCount >= 5)
+                return true;
+            else
+                return false;
         }
     }
 }
+
