@@ -43,7 +43,9 @@ So, inside the game loop:
    <b>Other Classes: </b>
    
    <b>GameObjects.cs</b> = Parent Class for all Objects in the game i.e., Hero, Bullet, and Invader
+   
    <b>GameBoard.cs </b> = where all the UI drawing happens except for some cases in Game.cs.
+   
    <b>WelcomeScreen.cs</b> = Game Intro and dialogues 
    
    <b> Future Works: </b>
